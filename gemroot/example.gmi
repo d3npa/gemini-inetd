@@ -1,0 +1,9 @@
+Hello world!
+
+Remember to buy:
+* Soba
+* Red Eggs
+* Tofu (Silky)
+* Negi
+
+=> gemini://gemini.circumlunar.space/docs/specification.gmi Gemini Specification
