@@ -76,6 +76,7 @@ dependencies = [
 [[package]]
 name = "gemini-hacking"
 version = "0.1.0"
+source = "git+https://github.com/d3npa/gemini-hacking?rev=3d9587717c3b1bbdc02006e66d3bd7baf9c02b32#3d9587717c3b1bbdc02006e66d3bd7baf9c02b32"
 dependencies = [
  "tokio",
  "tokio-native-tls",
@@ -84,7 +85,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gemini-server"
+name = "gemini-inetd"
 version = "0.1.0"
 dependencies = [
  "gemini-hacking",

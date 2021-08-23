@@ -1,9 +1,12 @@
 [package]
-name = "gemini-something"
+name = "gemini-inetd"
 version = "0.1.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gemini-hacking = { path = "../gemini-hacking" }
+
+[dependencies.gemini-hacking]
+git = "https://github.com/d3npa/gemini-hacking"
+rev = "3d9587717c3b1bbdc02006e66d3bd7baf9c02b32"
