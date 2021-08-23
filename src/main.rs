@@ -22,7 +22,7 @@ fn read_request() -> io::Result<String> {
 fn serve_file(path: &str) {
     let path = format!("{}{}", GEMROOT, path);
     
-    let content = match fs::read(&path) {
+    let contents = match fs::read(&path) {
         Ok(v) => v,
         Err(_) => {
             print!("{}\r\n", gh::response_codes::NOT_FOUND);
