@@ -1,4 +1,5 @@
-use std::{fs, io};
+use std::{env, fs, io};
+use std::path::Path;
 use std::io::Write;
 
 use gemini_hacking::{
@@ -24,8 +25,8 @@ fn read_request() -> io::Result<String> {
     Ok(line)
 }
 
-fn serve_file(path: &str) {
-    let path = format!("{}{}", GEMROOT, path);
+fn serve_file(gemroot: &str, path: &str) {
+    let path = format!("{}{}", gemroot, path);
     
     let contents = fs::read(&path).unwrap_or_else(|e| {
         match e.kind() {
@@ -48,6 +49,18 @@ fn serve_file(path: &str) {
 }
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+    
+    if args.len() != 2 {
+        exit_error!(codes::CGI_ERROR, "usage: ./gemini-inetd <gemroot path>");
+    }
+
+    let gemroot = &args[1];
+
+    if ! Path::new(gemroot).exists() {
+        exit_error!(codes::CGI_ERROR, "invalid gemroot path");
+    }
+
     let request = read_request().unwrap_or_else(|_| {
         exit_error!(codes::CGI_ERROR, "unable to read request");
     });
@@ -65,5 +78,5 @@ fn main() {
         path = "/index.gmi".to_string();
     }
 
-    serve_file(&path);
+    serve_file(gemroot, &path);
 }
